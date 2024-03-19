@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="intro-section">
+    <div class="container1">
+      <h2>Welcome to Student Management System</h2>
+      <p>Here, you can manage student courses and instructor details efficiently. Whether you're a student looking <br>  to enroll in courses or an instructor managing courses, we've got you covered.</p>
+      <a href="{{ url_for('student') }}" class="btn btn-primary">Get Student Details</a>
+    </div>
+  </section>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='student.css') }}" />
+{% endblock %}
+
+
+

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-container ">
+    <div class="container-fluid section-content">
+            <h1>Enter Student Number:</h1>
+            <form method="POST" action="/student">
+                <label for="student_number">Student Number:</label>
+                <input type="text" id="student_number" name="student_number">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+  </section>
+
+    {% if grades %}
+    <h2>Student Details</h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Student Number</th>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Course Number</th>
+                <th>Section Identifier</th>
+                <th>Instructor</th>
+                <th>Credit Hours</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade in grades %}
+            <tr scope="row">
+                <td><a href="{{ url_for('student_view.student_details', student_number=grade.Student_Number) }}">{{grade.Student_Number}}</a></td>
+                <td>{{grade.Student_Name}}</td>
+                <td>{{ grade.Course_Name }}</td>
+                <td><a href="{{ url_for('course_view.course_details', course_number=grade.Course_Number) }}">{{ grade.Course_Number }}</a></td>
+                <td>{{ grade.Section_Identifier }}</td>
+                <td><a href="{{ url_for('instructor_view.instructor_details', instructor_name=grade.Instructor) }}">{{ grade.Instructor }}</a></td>
+                <td>{{ grade.Credit_Hour }}</td>
+                <td>{{ grade.Semester }}</td>
+                <td>{{ grade.Year }}</td>
+                <td>{{ grade.Grade }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='student.css') }}" />
+{% endblock %}
+
+
+

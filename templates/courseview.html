@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-container">
+    <div class="container-fluid section-content">
+            <h1>Enter Course Number:</h1>
+            <form method="POST" action="/course">
+                <label for="course_number">Course Number:</label>
+                <input type="text" id="course_number" name="course_number">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+    {% if courses %}
+    <h2>Course Details</h2>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Course Number</th>
+                <th>Course Name</th>
+                <th>Credit Hour</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th>Department</th>
+                <th>Instructor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr scope="row">
+                <td><a href="{{ url_for('course_view.course_details', course_number=course.Course_Number) }}">{{ course.Course_Number }}</a></td>
+                <td>{{ course.Course_Name }}</td>
+                <td>{{ course.Credit_Hour }}</td>
+                <td>{{ course.Semester }}</td>
+                <td>{{ course.Year }}</td>
+                <td>{{ course.Department }}</td>
+                <td><a href="{{ url_for('instructor_view.instructor_details', instructor_name=course.Instructor) }}">{{ course.Instructor }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='student.css') }}" />
+{% endblock %}
+
+
+
